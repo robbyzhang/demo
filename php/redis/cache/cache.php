@@ -67,10 +67,11 @@
 						function mysql_query_cache($sql, $linkIdentifier = false, $timeout = 20) {
 							$k = md5("mysql_query" . $sql);
 							$redis = new Redis();
-							$redis -> connect('127.0.0.1');
+							$redis -> pconnect('127.0.0.1');
 							$cache = unserialize($redis -> get($k));
-							print $$linkIdentifier;
+							
 							if ($cache == "") {
+							//if(true){
 								print("Fetch from DB");
 								$cache = false;
 								$r = ($linkIdentifier != false) ? mysql_query($sql, $linkIdentifier) : mysql_query($sql);
@@ -90,6 +91,7 @@
 							} else {
 								print("Fetch from cache");
 							}
+							$redis->close();
 							return $cache;
 						}
 
@@ -101,7 +103,7 @@
 						for ($i = 0; $i < $rows; $i++) {
 							echo "<tr><td>" . $r[$i]['title'] . "<td>" . $r[$i]['author'] . "</td>" . "<td>" . $r[$i]['time'] . "</td>" . "</td></tr>";
 						}
-						mysql_close($con);
+
 						?>
 					</tbody>
 				</table>
