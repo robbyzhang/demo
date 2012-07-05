@@ -1,5 +1,5 @@
 <?php
-print_r($_POST);
+//print_r($_POST);
 $fp = fopen("./data/sample1.h", "w");
 fwrite($fp, "#ifndef GTEST_SAMPLES_SAMPLE1_H_\r\n");
 fwrite($fp, "#define GTEST_SAMPLES_SAMPLE1_H_\r\n");
@@ -32,9 +32,23 @@ fwrite($fp, "\r\n");
 */
 $fname=$_POST["fname"];
 $fun=substr($fname, strpos($fname, " ")+1, strpos($fname, "(")-strpos($fname, " ")-1);
-fwrite($fp, 'TEST('.$fun.",Test){\r\n");
+
 //EXPECT_EQ(1, Factorial(-5));
-fwrite($fp, "EXPECT_EQ(".$_POST["output1"].",".$fun."(".$_POST["input1"]."));\r\n");
-fwrite($fp, "}\r\n");
+
+for($i=1; $i<=5; $i++){
+	$a = $_POST["input".$i];
+	$b = $_POST["output".$i];
+	$testname="test_".$i;
+	if($a!="" && $b!="")
+	{
+		fwrite($fp, 'TEST('.$fun.", $testname){\r\n");
+		fwrite($fp, "EXPECT_EQ(".$b.",".$fun."(".$a."));\r\n");
+		fwrite($fp, "}\r\n");
+	}
+}
 fclose($fp);
+system("cd ./data && make > ./res.txt");
+system("./data/sample1_unittest>>./data/res.txt" );
+
+
 ?>

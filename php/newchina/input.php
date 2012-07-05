@@ -3,6 +3,7 @@
 	<head>
 		<link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.form.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		<script   language="javascript">
@@ -22,6 +23,17 @@
 				count--;
 				document.getElementById(diva).parentNode.removeChild(document.getElementById(diva));
 			}
+			
+			$(document).ready(function() {
+				$("#btn").click(function(){
+					$("#div_res").html("loading ...");
+					$("#frm_program").ajaxSubmit(function(){
+						$("#div_res").html("");
+						$("#div_res").load("./data/res.txt");
+					});
+					return false;
+				});
+			});
 		</script>
 	</head>
 	<body>
@@ -30,7 +42,7 @@
 				<h1>Auto C Function Test Demo</h1>
 			</div>
 
-			<form method="post" action="submit.php" class="well form-horizontal">
+			<form id="frm_program" method="post" action="submit.php" class="well form-horizontal">
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="input01">Function Declaration</label>
@@ -53,12 +65,13 @@
 
 						<br/>
 						<div class="controls">
-							<input id="btn1" type="submit" name="submit" value="Submit" class="btn">
+							<input id="btn" type="submit" name="submit" value="Submit" class="btn">
 						</div>
 
 					</div>
 				</fieldset>
 			</form>
+			<textarea style="width:100%; height:1000px" class="well" id="div_res"></textarea>
 		</div>
 
 	</body>
