@@ -8,16 +8,19 @@
 		<title>Chat Room</title>
 		<link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="../../../js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../js/jquery.form.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				var socket = new WebSocket('ws://127.0.1.1:8081');
-				socket.onopen = function(event){
-					socket.send('subscribe chat');
-					socket.onmessage = function(event){
-						alert(event);
-					}
-				}
+				$("#topic_list").load("list_topics.php");
+				$("#btn_new_topic").click(function() {
+					$("#frm_new_topic").ajaxSubmit(function(resp) {
+						$("#topic_list").load("list_topics.php");
+					});
+					return false;
+				});
+
 			});
+
 		</script>
 	</head>
 
@@ -27,18 +30,20 @@
 				<h1>Chat Room Demo</h1>
 			</div>
 
-			<h3>Search String</h3>
-			<div class="well" id="ret_string"></div>
-			
-			<br>
-
-			<h3>Search List</h3>
-			<form method="post" action="" class="well form-inline">
-				Key:
-				<input id="list_key" type="text" name="key" class="input-small">
-				<input id="btn1" type="submit" name="submit" value="Search" class="btn">
+			<h3>创建一个新主题</h3>
+			<form id="frm_new_topic" method="post" action="create_topic.php" class="well form-inline">
+				主题:
+				<input type="text" name="topic_name" class="input-small">
+				<input id="btn_new_topic" type="submit" name="submit" value="创建" class="btn">
 			</form>
-			<div class="well" id="ret_list"></div>
+
+			<h3>昵称</h3>
+			<div class="well">
+				<input type="text" id="user_name" class="input-small" value="">
+			</div>
+			
+			<h3>主题列表</h3>
+			<div class="well" id="topic_list"></div>
 		</div>
 
 	</body>
