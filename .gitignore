@@ -1,0 +1,9 @@
+php/newchina/data/gtest_main.a
+php/newchina/data/gtest_main.o
+php/newchina/data/gtest-all.o
+php/newchina/data/res.txt
+php/newchina/data/sample1_unittest
+php/newchina/data/sample1_unittest.cc
+php/newchina/data/sample1_unittest.o
+php/newchina/data/sample1.cc
+php/newchina/data/sample1.o
