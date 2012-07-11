@@ -72,7 +72,7 @@
 							
 							if ($cache == "") {
 							//if(true){
-								print("Fetch from DB");
+								print("<p style=\"color:red\">Fetch from DB</p>");
 								$cache = false;
 								$r = ($linkIdentifier != false) ? mysql_query($sql, $linkIdentifier) : mysql_query($sql);
 								if (is_resource($r) && (($rows = mysql_num_rows($r)) !== 0)) {
@@ -89,7 +89,7 @@
 									$redis -> setex($k, $timeout, serialize($cache));
 								}
 							} else {
-								print("Fetch from cache");
+								print("<p style=\"color:red\">Fetch from Cache</p>");
 							}
 							$redis->close();
 							return $cache;
