@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+		<title>Basic Search</title>
+		<link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="../../../js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../js/jquery.form.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#btn_login").click(function(){
+					$("#form_oper").attr("value", "login")
+					$("#form_login").ajaxSubmit(function(resp){
+						$("#lab_ret").html(resp);
+						
+					});
+					return false;
+				});
+				
+				$("#btn_register").click(function(){
+					$("#form_oper").attr("value", "register")
+					$("#form_login").ajaxSubmit(function(resp){
+						$("#lab_ret").html(resp);
+					});
+					return false;
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<form id="form_login" method="post" action="login.php" class="well form-inline">
+					<input id="form_oper" type="hidden" name="oper">
+					用户名:
+					<input id="string_key" type="text" name="name" class="input-small">
+					密码:
+					<input id="string_key" type="password" name="password" class="input-small">
+					<input id="btn_login" type="submit" name="submit" value="登录" class="btn">
+					<input id="btn_register" type="submit" name="submit" value="注册" class="btn">
+					<lable id="lab_ret"></lable>
+				</form>
+			</div>
+
+			<h3>Search String</h3>
+			<form method="post" action="" class="well form-inline">
+				Key:
+				<input id="string_key" type="text" name="key" class="input-small">
+				<input id="btn" type="submit" name="submit" value="Search" class="btn">
+			</form>
+			<div class="well" id="ret_string"></div>
+
+			<br>
+
+			<h3>Search List</h3>
+			<form method="post" action="" class="well form-inline">
+				Key:
+				<input id="list_key" type="text" name="key" class="input-small">
+				<input id="btn1" type="submit" name="submit" value="Search" class="btn">
+			</form>
+			<div class="well" id="ret_list"></div>
+		</div>
+
+	</body>
+</html>

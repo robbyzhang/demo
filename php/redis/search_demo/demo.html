@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+		<link href="../../../js/jqueryui/css/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" />
+		<link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="../../../js/jquery.form.js"></script>
+		<script type="text/javascript" src="../../../js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../js/jqueryui/js/jquery-ui-1.8.21.custom.min.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#btn_search").click(function(){
+					$("#form_search").ajaxSubmit(function(resp){
+						alert(1);
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+
+		<div class="container">
+			<div class="page-header">
+				<h1>Redis Search Demo</h1>
+			</div>
+
+			<form id="form_search" class="form-inline" action="search.php">
+				<input type="text">
+				<input id="btn_search" type="button" value="search">
+			</form>
+		</div>
+	</body>
+</html>

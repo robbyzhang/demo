@@ -5,7 +5,7 @@ $redis -> pconnect('127.0.0.1');
 $val = $redis -> zRank("search", $key);
 
 if (strlen($val)!=0) {
-	$ret = $redis -> zRange("search", $val, $val + 100);
+	$ret = $redis -> zRange("search", $val+1, $val + 100);
 
 	$a = array();
 	foreach ($ret as $v) {
