@@ -5,24 +5,24 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-		<title>Basic Search</title>
+		<title>Weibo Demo</title>
 		<link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="../../../js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="../../../js/jquery.form.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$("#btn_login").click(function(){
+				$("#btn_login").click(function() {
 					$("#form_oper").attr("value", "login")
-					$("#form_login").ajaxSubmit(function(resp){
+					$("#form_login").ajaxSubmit(function(resp) {
 						$("#lab_ret").html(resp);
-						
+
 					});
 					return false;
 				});
-				
-				$("#btn_register").click(function(){
+
+				$("#btn_register").click(function() {
 					$("#form_oper").attr("value", "register")
-					$("#form_login").ajaxSubmit(function(resp){
+					$("#form_login").ajaxSubmit(function(resp) {
 						$("#lab_ret").html(resp);
 					});
 					return false;
@@ -46,13 +46,23 @@
 				</form>
 			</div>
 
-			<h3>Search String</h3>
-			<form method="post" action="" class="well form-inline">
-				Key:
-				<input id="string_key" type="text" name="key" class="input-small">
-				<input id="btn" type="submit" name="submit" value="Search" class="btn">
-			</form>
-			<div class="well" id="ret_string"></div>
+			<h3>当前微薄用户</h3>
+			<div class="well" id="ret_string">
+				<table>
+					<tbody>
+						<?php
+						$redis = new Redis();
+						$redis -> pconnect('127.0.0.1');
+						$l = $redis->get("nextId");
+						for($i=1; $i<$l; $i++){
+							$name = $redis->get("uid:$i:name");
+							echo "<tr><td>".$name."</td><td><a>关注</a></td><td><a>取消关注</a></td></tr>";
+						}
+						?>
+					</tbody>
+				</table>
+
+			</div>
 
 			<br>
 
