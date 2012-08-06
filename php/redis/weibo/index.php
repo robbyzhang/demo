@@ -9,24 +9,17 @@
 		<link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="../../../js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="../../../js/jquery.form.js"></script>
+		<script type="text/javascript" src="../../../js/jquery.cookie.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$("#btn_login").click(function() {
-					$("#form_oper").attr("value", "login")
-					$("#form_login").ajaxSubmit(function(resp) {
-						$("#lab_ret").html(resp);
 
-					});
-					return false;
-				});
-
-				$("#btn_register").click(function() {
-					$("#form_oper").attr("value", "register")
-					$("#form_login").ajaxSubmit(function(resp) {
-						$("#lab_ret").html(resp);
-					});
-					return false;
-				});
+				if ($.cookie("auth") != null) {
+					$("#form_login").hide();
+					$("#div-user").show();
+				} else {
+					$("#form_login").show();
+					$("#div-user").hide();
+				}
 			});
 		</script>
 	</head>
@@ -41,38 +34,107 @@
 					密码:
 					<input id="string_key" type="password" name="password" class="input-small">
 					<input id="btn_login" type="submit" name="submit" value="登录" class="btn">
-					<input id="btn_register" type="submit" name="submit" value="注册" class="btn">
+					<a href="register.html">注册</a>
 					<lable id="lab_ret"></lable>
 				</form>
+				<div id="div-user">
+					<lable id="lab-user">
+						<?php $redis = new Redis();
+						$redis -> pconnect('127.0.0.1');
+						$co = $_COOKIE['auth'];
+						$id = $redis -> get("au:$co");
+						echo $redis -> get("uid:$id:name");
+						?>
+					</lable>
+					<a href="logout.php">注销</a>
+				</div>
 			</div>
 
-			<h3>当前微薄用户</h3>
+			<h3>当前未关注用户</h3>
 			<div class="well" id="ret_string">
-				<table>
+				<table class="table table-bordered">
 					<tbody>
-						<?php
-						$redis = new Redis();
-						$redis -> pconnect('127.0.0.1');
-						$l = $redis->get("nextId");
-						for($i=1; $i<$l; $i++){
-							$name = $redis->get("uid:$i:name");
-							echo "<tr><td>".$name."</td><td><a>关注</a></td><td><a>取消关注</a></td></tr>";
+						<?php $l = $redis -> get("nextId");
+
+						for ($i = 1; $i < $l; $i++) {
+							if ($i != $id && !$redis -> sIsMember("uid:$id:follow", $i)) {
+								$name = $redis -> get("uid:$i:name");
+								echo "<tr><td>" . $name . "</td><td><a href=\"follow.php?name=$name\">关注</a></td></tr>";
+							}
 						}
 						?>
 					</tbody>
 				</table>
-
 			</div>
 
-			<br>
+			<h3>已关注用户</h3>
+			<div class="well" id="ret_string">
+				<table class="table table-bordered">
+					<tbody>
+						<?php $ar = $redis -> sMembers("uid:$id:follow");
+						foreach ($ar as $value) {
+							$name = $redis -> get("uid:$value:name");
+							echo "<tr><td>" . $name . "</td><td><a href=\"unfollow.php?name=$name\">取消关注</a></td></tr>";
+						}
+						?>
+					</tbody>
+				</table>
+			</div>
 
-			<h3>Search List</h3>
-			<form method="post" action="" class="well form-inline">
-				Key:
-				<input id="list_key" type="text" name="key" class="input-small">
-				<input id="btn1" type="submit" name="submit" value="Search" class="btn">
+			<h3>发布微薄</h3>
+
+			<form method="post" action="post.php" class="well form-inline">
+				<input type="text" name="content" class="span6">
+				<input type="submit" name="submit" value="发布" class="btn">
 			</form>
-			<div class="well" id="ret_list"></div>
+
+			<h3>微薄</h3>
+			<div class="well" id="ret_string">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>发布人</th>
+							<th>时间</th>
+							<th>内容</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						function strElapsed($t) {
+								$d = time() - $t;
+								if ($d < 60)
+									return "$d seconds";
+								if ($d < 3600) {
+									$m = (int)($d / 60);
+									return "$m minute" . ($m > 1 ? "s" : "");
+								}
+								if ($d < 3600 * 24) {
+									$h = (int)($d / 3600);
+									return "$h hour" . ($h > 1 ? "s" : "");
+								}
+								$d = (int)($d / (3600 * 24));
+								return "$d day" . ($d > 1 ? "s" : "");
+							}
+						$ar = $redis -> lRange("uid:$id:post", 0,  -1);
+						foreach ($ar as $value) {
+							$data = $redis -> get("post:$value");
+							$aux = explode("|", $data);
+							$id = $aux[0];
+							
+							$content = $aux[2];
+							$name = $redis -> get("uid:$id:name");
+
+							
+							
+							$t=strElapsed($aux[1]);
+
+							echo "<tr><td>$name</td><td>$t</td><td>$content</td></tr>";
+						}
+						?>
+					</tbody>
+				</table>
+			</div>
+
 		</div>
 
 	</body>

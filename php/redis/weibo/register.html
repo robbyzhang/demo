@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>注册</title>
+		<link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="../../../js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../js/jquery.form.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#btn_register").click(function() {
+					$("#form_register").ajaxSubmit(function(resp) {
+						$(".input-xlarge").attr("value", "");
+						$("#lab_ret").html(resp);
+						
+					});
+					return false;
+				});
+
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+
+			<form id="form_register" class="form-horizontal" action="register.php" method="post">
+				<fieldset>
+					<legend>
+						注册新用户
+						<a style="font-size: 12px" href="index.php">返回首页</a>
+					</legend>
+
+					<div class="control-group">
+						<label class="control-label" for="input01">用户名：</label>
+						<div class="controls">
+							<input type="text" class="input-xlarge" name="name">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="input01">密码：</label>
+						<div class="controls">
+							<input type="password" class="input-xlarge" name="pwd">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="input01">重复密码：</label>
+						<div class="controls">
+							<input type="password" class="input-xlarge" name="pwd1">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" class="btn" id="btn_register">
+								注册
+							</button>
+						</div>
+
+					</div>
+
+				</fieldset>
+			</form>
+			<div class="well">
+				<lab style="color: red" id="lab_ret"></lab>
+			</div>
+		</div>
+
+	</body>
+</html>

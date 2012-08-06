@@ -1,0 +1,11 @@
+zadd search 0 r
+zadd search 0 re
+zadd search 0 red
+zadd search 0 redi
+zadd search 0 redis
+zadd search 0 redis*
+zadd search 0 rea
+zadd search 0 read
+zadd search 0 ready
+zadd search 0 ready*
+
