@@ -1,1 +1,45 @@
-<mxfile host="app.diagrams.net" modified="2021-08-09T05:54:50.216Z" agent="5.0 (Windows)" etag="dkob_7JWo-xI7WWtehc7" version="14.9.5" type="github"><diagram id="arXlALTN_GTKxctONamy" name="Page-1">5ZfLbuIwFIafhmURuQBhybWzaKt2qnaWyMQmserYqWMK9OnnmNi5YCo6M0UaqSxy+WOf2P93jnE6wTTbXUuUp7cCE9bxe3jXCWYd3x95PThqYV8K4aBfComkuJS8Wnik78SIpl+yoZgUrYZKCKZo3hZjwTmJVUtDUoptu9lasPZbc5QQR3iMEXPVXxSrtFQjf1jrPwhNUvtmbzAqn2TINjYzKVKExbYhBfNOMJVCqPIq200J095ZX8p+iw+eVgOThKvPdIher9X7nfz1NJ5Kehc9DMTD+spM4w2xjZnw862JXKi9NQEVeentmu4IhJukKmNw68FlLihXB5P7k05/BgpiNOEgxDAwIkGg2cHkyVpwZQh7fq3PaJbAsBldwTErYkTg/Hy7vKF8s+sWbwk0NcMkUpHdh/P3KlchG4nIiJJ7aGI6+EMDwmSiH5r7bc11ZKS0gTTyu5HJJ5NLSRW7tlsPvXT8D9y3Sd6w/0YgDAqYiHgM7h2j0BZQSM8btCLsXhRUUaHNXgmlRNZGY9uODRAl8lN4CiXFC5kKJuBuxgU/sKKMWanjB73eZL7QzCCLcz2UbJfoeu+i940k5XHJYOzLlR35l0ALwja0kcvMGw5daP3RpZB536diwuj/qxjfsd/xXmwUoxwS2v4j9MAOjIpUgzjcnC2iT1ZOA6pTF9si6Gb74pUt8WpJeaF0VbiF5c+HwSQCHbphCoGP6vACC1/Y+yTG8FIQQwfiT4Jp4ZC0ptpyOLu2nQXL9IMJil8SKTYcN0CsDz9bY2NbvzpdnGK2ZZgqpbchY22Hv4gxD7sUNiJryjGR3Rje6C8wUghOWocJLqSe6JU20Av7wG3xxBVVjOArH5I76uY8uUDlBiPfXTd7J5hX4tdDd7caDm/C8Vjv2er0r8rWa+MvuxLsbN7OOtRwoH/CAKtJwpCib+3wp0wxb7jXi3oNoPLRLp3HvhZiI2NiejV3bUeBhoMzgRSSCVFOoAOjatr/gC36ztiC4RdhcwL9NTa9hlTfDGXz+sMrmP8G</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-08-09T07:58:38.650Z" agent="5.0 (Windows)" etag="VrLUrcLk05f1zvjA3amf" version="14.9.5" type="github">
+  <diagram id="arXlALTN_GTKxctONamy" name="Page-1">
+    <mxGraphModel dx="910" dy="465" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="8qGtzNrWUACriN8Q6oQf-7" value="VM1" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/VM_Linux.svg;" parent="1" vertex="1">
+          <mxGeometry x="270" y="240" width="90" height="82.8" as="geometry" />
+        </mxCell>
+        <mxCell id="8qGtzNrWUACriN8Q6oQf-10" value="Load Balancer" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.azure_load_balancer;" parent="1" vertex="1">
+          <mxGeometry x="340" y="90" width="177" height="59" as="geometry" />
+        </mxCell>
+        <mxCell id="8qGtzNrWUACriN8Q6oQf-11" value="VM1" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/VM_Linux.svg;" parent="1" vertex="1">
+          <mxGeometry x="480" y="240" width="90" height="82.8" as="geometry" />
+        </mxCell>
+        <mxCell id="8qGtzNrWUACriN8Q6oQf-12" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.mysql_db_instance;fillColor=#2E73B8;gradientColor=none;" parent="1" vertex="1">
+          <mxGeometry x="270" y="400" width="90" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="8qGtzNrWUACriN8Q6oQf-14" value="Redis" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn4.iconfinder.com/data/icons/redis-2/1451/Untitled-2-128.png" parent="1" vertex="1">
+          <mxGeometry x="480" y="392" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="8qGtzNrWUACriN8Q6oQf-17" value="" style="endArrow=none;dashed=1;html=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="200" as="sourcePoint" />
+            <mxPoint x="760" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8qGtzNrWUACriN8Q6oQf-18" value="" style="endArrow=none;dashed=1;html=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="370" as="sourcePoint" />
+            <mxPoint x="760" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SpZybrLnGqleWVx8yywC-1" value="" style="strokeColor=#dddddd;shadow=1;strokeWidth=1;rounded=1;absoluteArcSize=1;arcSize=2;" vertex="1" parent="1">
+          <mxGeometry x="640" y="90" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="SpZybrLnGqleWVx8yywC-2" value="&lt;div&gt;TCCN&lt;/div&gt;" style="dashed=0;connectable=0;html=1;fillColor=#757575;strokeColor=none;shape=mxgraph.gcp2.cluster;part=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;spacingLeft=5;fontSize=12;" vertex="1" parent="SpZybrLnGqleWVx8yywC-1">
+          <mxGeometry y="0.5" width="32" height="32" relative="1" as="geometry">
+            <mxPoint x="5" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
